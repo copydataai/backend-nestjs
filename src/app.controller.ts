@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -21,6 +21,12 @@ export class AppController {
     return 'with /sas/';
   }
 
+  // If you want route static, you have what define before to route dinamic
+  @Get('products/filter')
+  getProductFilter() {
+    return `I am a filter`;
+  }
+
   @Get('products/:id')
   getProduct(@Param() params: any) {
     return `product ${params.id}`;
@@ -31,8 +37,18 @@ export class AppController {
     return `Your category is ${categoryId}`;
   }
 
-  @Get('/categories/:categoryId/products/:productId')
+  @Get('categories/:categoryId/products/:productId')
   getCategoryAndProduct(@Param() { categoryId, productId }) {
     return `This is category ${categoryId} with product ${productId}`;
+  }
+
+  @Get('products')
+  getSpecificProduct(
+    @Query('limit') limit = 100,
+    @Query('offset') offset = 0,
+    @Query('brand') brand: string,
+  ) {
+    //const { limit, offset } = params;
+    return `products: limite => ${limit} offset=> ${offset} brand=> ${brand}`;
   }
 }
