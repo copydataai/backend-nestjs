@@ -7,6 +7,17 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return 'Hello NESTJS!';
+  }
+
+  //Declare new route with /nuevo
+  @Get('nuevo')
+  newEndpoint() {
+    return 'I am new';
+  }
+
+  @Get('/route/')
+  otherNew() {
+    return 'con /sas/';
   }
 }
