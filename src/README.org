@@ -1,0 +1,25 @@
+#+TITLE: Documentation from API
+
+* Products
+#+begin_src restclient
+GET http://localhost:3000/products
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "statusCode": 404,
+  "message": "Cannot GET /products",
+  "error": "Not Found"
+}
+// GET http://localhost:3000/products
+// HTTP/1.1 404 Not Found
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 71
+// ETag: W/"47-UquNadRk+WZridZ2RgqQ5T+y+Fg"
+// Date: Wed, 29 Sep 2021 20:32:53 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.006724s
+#+END_SRC
