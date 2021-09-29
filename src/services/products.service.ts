@@ -7,7 +7,7 @@ export class ProductsService {
   private counterId = 1;
   private products: Product[] = [
     {
-      id: 1,
+      id: '1',
       name: 'Product 1',
       description: 'bla bla',
       price: 122,
@@ -20,8 +20,18 @@ export class ProductsService {
     return this.products;
   }
 
-  findOne(id: any) {
-    return this.products.find((item) => item.id === id);
+  findOne(id: string) {
+    const value = this.products.find((item) => item.id === id);
+    if (!value) {
+      return {
+        error: true,
+        message: "Don't exists this product",
+      };
+    }
+    return {
+      message: 'OK',
+      payload: value,
+    };
   }
 
   createOne(payload: any) {
@@ -34,7 +44,7 @@ export class ProductsService {
     return newProduct;
   }
 
-  updateOne(id: any, payload: any) {
+  updateOne(id: string, payload: any) {
     const product = this.findOne(id);
     if (!product) {
       return null;
@@ -46,7 +56,7 @@ export class ProductsService {
     };
     return this.products[index];
   }
-  deleteOne(id: any) {
+  deleteOne(id: string) {
     const product = this.products.findIndex((item) => item.id === id);
     if (product !== -1) {
       this.products.splice(product, 1);

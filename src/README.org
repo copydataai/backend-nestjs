@@ -1,25 +1,176 @@
 #+TITLE: Documentation from API
 
 * Products
+** Methods get
+*** getProducts
 #+begin_src restclient
 GET http://localhost:3000/products
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC js
+[
+  {
+    "message": "OK",
+    "payload": {
+      "id": "1",
+      "name": "Product 1",
+      "description": "bla bla",
+      "price": 122,
+      "stock": 12,
+      "image": ""
+    }
+  },
+  {
+    "id": 1,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5
+  },
+  {
+    "id": 1,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5
+  }
+]
+// GET http://localhost:3000/products
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 288
+// ETag: W/"120-d4Ugf5ednJwIaG9LgcGEIlTD48s"
+// Date: Wed, 29 Sep 2021 22:12:06 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.001749s
+#+END_SRC
+*** getProduct
+#+begin_src restclient
+GET http://localhost:3000/products/1
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "message": "OK",
+  "payload": {
+    "id": "1",
+    "name": "Product 1",
+    "description": "bla bla",
+    "price": 122,
+    "stock": 12,
+    "image": ""
+  }
+}
+// GET http://localhost:3000/products/1
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 114
+// ETag: W/"72-BsHl2C2NIEXwvaEPa8GfaLqHc+4"
+// Date: Wed, 29 Sep 2021 21:10:47 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.007127s
+#+END_SRC
+** Methods Post
+*** Create product
+#+begin_src restclient
+POST http://localhost:3000/products
+Content-Type: application/json
+{
+  "name": "Smartphone",
+  "description": "This is technology",
+  "price": 100,
+  "stock": 5
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "message": "Action create",
+  "payload": {
+    "id": 1,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5
+  }
+}
+// POST http://localhost:3000/products
+// HTTP/1.1 201 Created
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 123
+// ETag: W/"7b-6kV63bwZ/DV50xdZ54p6igXZGQQ"
+// Date: Wed, 29 Sep 2021 22:11:56 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002229s
+#+END_SRC
+** Methods Patch
+*** update product
+#+begin_src restclient
+PATCH http://localhost:3000/products/1
+Content-Type: application/json
+{
+    "name": "Product Ultimate"
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "message": "Product is update",
+  "payload": {
+    "message": "OK",
+    "payload": {
+      "id": "1",
+      "name": "Product 1",
+      "description": "bla bla",
+      "price": 122,
+      "stock": 12,
+      "image": ""
+    }
+  }
+}
+// PATCH http://localhost:3000/products/1
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 156
+// ETag: W/"9c-lbalq0qQDcusI1bkutU/2tYEtks"
+// Date: Wed, 29 Sep 2021 21:28:46 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002338s
+#+END_SRC
+** Methods Delete
+*** Delete product
+#+begin_src restclient
+DELETE http://localhost:3000/products/1
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
 {
   "statusCode": 404,
-  "message": "Cannot GET /products",
+  "message": "Cannot DELETE /products/3",
   "error": "Not Found"
 }
-// GET http://localhost:3000/products
+// DELETE http://localhost:3000/products/3
 // HTTP/1.1 404 Not Found
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 71
-// ETag: W/"47-UquNadRk+WZridZ2RgqQ5T+y+Fg"
-// Date: Wed, 29 Sep 2021 20:32:53 GMT
+// Content-Length: 76
+// ETag: W/"4c-Lx8nwUdWNjeYCYeg7vMSz20eRMI"
+// Date: Wed, 29 Sep 2021 22:12:51 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.006724s
+// Request duration: 0.002031s
 #+END_SRC
