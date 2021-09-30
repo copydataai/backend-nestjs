@@ -7,7 +7,7 @@ export class ProductsService {
   private counterId = 1;
   private products: Product[] = [
     {
-      id: '1',
+      id: 0,
       name: 'Product 1',
       description: 'This is first product.',
       price: 122,
@@ -20,7 +20,7 @@ export class ProductsService {
     return this.products;
   }
 
-  findOne(id: string) {
+  findOne(id: number) {
     const value = this.products.find((item) => item.id === id);
     if (!value) {
       // return {
@@ -45,7 +45,7 @@ export class ProductsService {
     return newProduct;
   }
 
-  updateOne(id: string, payload: any) {
+  updateOne(id: number, payload: any) {
     const product = this.findOne(id);
     if (!product) {
       return null;
@@ -57,7 +57,7 @@ export class ProductsService {
     };
     return this.products[index];
   }
-  deleteOne(id: string) {
+  deleteOne(id: number) {
     const product = this.products.findIndex((item) => item.id === id);
     if (product !== -1) {
       this.products.splice(product, 1);

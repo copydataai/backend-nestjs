@@ -9,21 +9,51 @@ GET http://localhost:3000/products
 
 #+RESULTS:
 #+BEGIN_SRC js
-[]
+[
+  {
+    "id": 0,
+    "name": "Product 1",
+    "description": "This is first product.",
+    "price": 122,
+    "stock": 12,
+    "image": ""
+  },
+  {
+    "id": 1,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5
+  },
+  {
+    "id": 1,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5
+  },
+  {
+    "id": 2,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5
+  }
+]
 // GET http://localhost:3000/products
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 2
-// ETag: W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
-// Date: Wed, 29 Sep 2021 22:49:43 GMT
+// Content-Length: 360
+// ETag: W/"168-Y4NVHrdAT4VUtG+USFp0cttuvsM"
+// Date: Thu, 30 Sep 2021 15:40:37 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.001627s
+// Request duration: 0.001675s
 #+END_SRC
 *** getProduct
 #+begin_src restclient
-GET http://localhost:3000/products/1
+GET http://localhost:3000/products/2
 #+end_src
 
 #+RESULTS:
@@ -31,24 +61,23 @@ GET http://localhost:3000/products/1
 {
   "message": "OK",
   "payload": {
-    "id": "1",
-    "name": "Product 1",
-    "description": "",
-    "price": 122,
-    "stock": 12,
-    "image": ""
+    "id": 2,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5
   }
 }
-// GET http://localhost:3000/products/1
+// GET http://localhost:3000/products/2
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 114
-// ETag: W/"72-BsHl2C2NIEXwvaEPa8GfaLqHc+4"
-// Date: Wed, 29 Sep 2021 21:10:47 GMT
+// Content-Length: 112
+// ETag: W/"70-PTurxDL5VtHx0Y4BK9U5XX98gkg"
+// Date: Thu, 30 Sep 2021 17:23:34 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.007127s
+// Request duration: 0.001723s
 #+END_SRC
 ** Methods Post
 *** Create product
@@ -56,6 +85,7 @@ GET http://localhost:3000/products/1
 POST http://localhost:3000/products
 Content-Type: application/json
 {
+  "id": 2,
   "name": "Smartphone",
   "description": "This is technology",
   "price": 100,
@@ -68,7 +98,7 @@ Content-Type: application/json
 {
   "message": "Action create",
   "payload": {
-    "id": 1,
+    "id": 2,
     "name": "Smartphone",
     "description": "This is technology",
     "price": 100,
@@ -80,11 +110,11 @@ Content-Type: application/json
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
 // Content-Length: 123
-// ETag: W/"7b-6kV63bwZ/DV50xdZ54p6igXZGQQ"
-// Date: Wed, 29 Sep 2021 22:11:56 GMT
+// ETag: W/"7b-UzEY4be5TXsNLwVv0hJF5wBJiis"
+// Date: Thu, 30 Sep 2021 15:40:15 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.002229s
+// Request duration: 0.002200s
 #+END_SRC
 ** Methods Patch
 *** update product
@@ -127,20 +157,24 @@ Content-Type: application/json
 ** Methods Delete
 *** Delete product
 #+begin_src restclient
-DELETE http://localhost:3000/products/1
+DELETE http://localhost:3000/products/122
 #+end_src
 
 #+RESULTS:
-#+BEGIN_SRC html
-Product delete
-<!-- DELETE http://localhost:3000/products/1 -->
-<!-- HTTP/1.1 200 OK -->
-<!-- X-Powered-By: Express -->
-<!-- Content-Type: text/html; charset=utf-8 -->
-<!-- Content-Length: 14 -->
-<!-- ETag: W/"e-Clfquo5FX//PVZpEtu43ZZiNKy4" -->
-<!-- Date: Wed, 29 Sep 2021 22:49:37 GMT -->
-<!-- Connection: keep-alive -->
-<!-- Keep-Alive: timeout=5 -->
-<!-- Request duration: 0.002318s -->
+#+BEGIN_SRC js
+{
+  "statusCode": 404,
+  "message": "Product is not found",
+  "error": "Not Found"
+}
+// DELETE http://localhost:3000/products/122
+// HTTP/1.1 404 Not Found
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 71
+// ETag: W/"47-pd80z3Q8e7lQ4dvmNXfheuWKAnk"
+// Date: Thu, 30 Sep 2021 14:49:30 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.008151s
 #+END_SRC

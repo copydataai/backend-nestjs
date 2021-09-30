@@ -7,6 +7,7 @@ import {
   Patch,
   Delete,
   NotFoundException,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 
@@ -20,7 +21,7 @@ export class ProductsController {
   }
 
   @Get(':productId')
-  getProduct(@Param('productId') productId: string) {
+  getProduct(@Param('productId', ParseIntPipe) productId: number) {
     return this.productsService.findOne(productId);
   }
 
@@ -41,7 +42,7 @@ export class ProductsController {
 
   @Patch(':productId')
   updateProduct(
-    @Param('productId') productId: string,
+    @Param('productId', ParseIntPipe) productId: number,
     @Body('payload') payload: any,
   ) {
     const valueId = this.productsService.findOne(productId);
@@ -59,7 +60,7 @@ export class ProductsController {
   }
 
   @Delete(':productId')
-  deleteProduct(@Param('productId') productId: string) {
+  deleteProduct(@Param('productId', ParseIntPipe) productId: number) {
     const valueId = this.productsService.findOne(productId);
     if (!valueId) {
       // return {
