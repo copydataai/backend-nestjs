@@ -4,12 +4,13 @@ import {
   Param,
   Post,
   Body,
-  Patch,
+  Put,
   Delete,
   NotFoundException,
 } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 import { ParseIntPipe } from '../common/parse-int.pipe';
+import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
 
 @Controller('products')
 export class ProductsController {
@@ -26,7 +27,7 @@ export class ProductsController {
   }
 
   @Post()
-  createProduct(@Body() payload: any) {
+  createProduct(@Body() payload: CreateProductDto) {
     const value = this.productsService.createOne(payload);
     if (!value) {
       return {
@@ -40,10 +41,10 @@ export class ProductsController {
     };
   }
 
-  @Patch(':productId')
+  @Put(':productId')
   updateProduct(
     @Param('productId', ParseIntPipe) productId: number,
-    @Body('payload') payload: any,
+    @Body() payload: UpdateProductDto,
   ) {
     const valueId = this.productsService.findOne(productId);
     if (!valueId) {
