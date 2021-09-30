@@ -53,31 +53,26 @@ GET http://localhost:3000/products
 #+END_SRC
 *** getProduct
 #+begin_src restclient
-GET http://localhost:3000/products/2
+GET http://localhost:3000/products/true
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC js
 {
-  "message": "OK",
-  "payload": {
-    "id": 2,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5
-  }
+  "statusCode": 400,
+  "message": "hello is not an number",
+  "error": "Bad Request"
 }
-// GET http://localhost:3000/products/2
-// HTTP/1.1 200 OK
+// GET http://localhost:3000/products/hello
+// HTTP/1.1 400 Bad Request
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 112
-// ETag: W/"70-PTurxDL5VtHx0Y4BK9U5XX98gkg"
-// Date: Thu, 30 Sep 2021 17:23:34 GMT
+// Content-Length: 75
+// ETag: W/"4b-DloiNWhk/cPSi3mOYc/sIzRlcrA"
+// Date: Thu, 30 Sep 2021 17:31:20 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.001723s
+// Request duration: 0.007728s
 #+END_SRC
 ** Methods Post
 *** Create product

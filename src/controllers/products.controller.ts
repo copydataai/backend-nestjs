@@ -7,9 +7,9 @@ import {
   Patch,
   Delete,
   NotFoundException,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
+import { ParseIntPipe } from '../common/parse-int.pipe';
 
 @Controller('products')
 export class ProductsController {

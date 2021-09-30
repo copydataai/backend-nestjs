@@ -27,7 +27,7 @@ export class ProductsService {
       //   error: true,
       //   message: "Don't exists this product",
       // };
-      throw new NotFoundException('Product is not found');
+      throw new NotFoundException(`Product ${id} is not found`);
     }
     return {
       message: 'OK',
