@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { Product } from '../entities/product.entity';
 
@@ -9,7 +9,7 @@ export class ProductsService {
     {
       id: '1',
       name: 'Product 1',
-      description: 'bla bla',
+      description: 'This is first product.',
       price: 122,
       stock: 12,
       image: '',
@@ -23,10 +23,11 @@ export class ProductsService {
   findOne(id: string) {
     const value = this.products.find((item) => item.id === id);
     if (!value) {
-      return {
-        error: true,
-        message: "Don't exists this product",
-      };
+      // return {
+      //   error: true,
+      //   message: "Don't exists this product",
+      // };
+      throw new NotFoundException('Product is not found');
     }
     return {
       message: 'OK',

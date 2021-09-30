@@ -2,11 +2,11 @@ import {
   Controller,
   Get,
   Param,
-  Query,
   Post,
   Body,
   Patch,
   Delete,
+  NotFoundException,
 } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 
@@ -62,10 +62,11 @@ export class ProductsController {
   deleteProduct(@Param('productId') productId: string) {
     const valueId = this.productsService.findOne(productId);
     if (!valueId) {
-      return {
-        error: true,
-        message: 'Product not exists',
-      };
+      // return {
+      //   error: true,
+      //   message: 'Product not exists',
+      // };
+      throw new NotFoundException('Product not exists');
     }
     return this.productsService.deleteOne(productId);
   }

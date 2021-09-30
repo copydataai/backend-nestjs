@@ -9,43 +9,17 @@ GET http://localhost:3000/products
 
 #+RESULTS:
 #+BEGIN_SRC js
-[
-  {
-    "message": "OK",
-    "payload": {
-      "id": "1",
-      "name": "Product 1",
-      "description": "bla bla",
-      "price": 122,
-      "stock": 12,
-      "image": ""
-    }
-  },
-  {
-    "id": 1,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5
-  },
-  {
-    "id": 1,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5
-  }
-]
+[]
 // GET http://localhost:3000/products
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 288
-// ETag: W/"120-d4Ugf5ednJwIaG9LgcGEIlTD48s"
-// Date: Wed, 29 Sep 2021 22:12:06 GMT
+// Content-Length: 2
+// ETag: W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
+// Date: Wed, 29 Sep 2021 22:49:43 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.001749s
+// Request duration: 0.001627s
 #+END_SRC
 *** getProduct
 #+begin_src restclient
@@ -59,7 +33,7 @@ GET http://localhost:3000/products/1
   "payload": {
     "id": "1",
     "name": "Product 1",
-    "description": "bla bla",
+    "description": "",
     "price": 122,
     "stock": 12,
     "image": ""
@@ -157,20 +131,16 @@ DELETE http://localhost:3000/products/1
 #+end_src
 
 #+RESULTS:
-#+BEGIN_SRC js
-{
-  "statusCode": 404,
-  "message": "Cannot DELETE /products/3",
-  "error": "Not Found"
-}
-// DELETE http://localhost:3000/products/3
-// HTTP/1.1 404 Not Found
-// X-Powered-By: Express
-// Content-Type: application/json; charset=utf-8
-// Content-Length: 76
-// ETag: W/"4c-Lx8nwUdWNjeYCYeg7vMSz20eRMI"
-// Date: Wed, 29 Sep 2021 22:12:51 GMT
-// Connection: keep-alive
-// Keep-Alive: timeout=5
-// Request duration: 0.002031s
+#+BEGIN_SRC html
+Product delete
+<!-- DELETE http://localhost:3000/products/1 -->
+<!-- HTTP/1.1 200 OK -->
+<!-- X-Powered-By: Express -->
+<!-- Content-Type: text/html; charset=utf-8 -->
+<!-- Content-Length: 14 -->
+<!-- ETag: W/"e-Clfquo5FX//PVZpEtu43ZZiNKy4" -->
+<!-- Date: Wed, 29 Sep 2021 22:49:37 GMT -->
+<!-- Connection: keep-alive -->
+<!-- Keep-Alive: timeout=5 -->
+<!-- Request duration: 0.002318s -->
 #+END_SRC
