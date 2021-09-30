@@ -19,60 +19,59 @@ GET http://localhost:3000/products
     "image": ""
   },
   {
-    "id": 1,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5
+    "message": "OK",
+    "payload": {
+      "id": 2,
+      "name": "Smartphone",
+      "description": "This is technology",
+      "price": 100,
+      "stock": 5,
+      "image": "https://google.com/"
+    },
+    "price": 105
   },
   {
-    "id": 1,
+    "id": 3,
     "name": "Smartphone",
     "description": "This is technology",
     "price": 100,
-    "stock": 5
-  },
-  {
-    "id": 2,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5
+    "stock": 5,
+    "image": "https://google.com/"
   }
 ]
 // GET http://localhost:3000/products
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 360
-// ETag: W/"168-Y4NVHrdAT4VUtG+USFp0cttuvsM"
-// Date: Thu, 30 Sep 2021 15:40:37 GMT
+// Content-Length: 373
+// ETag: W/"175-zw/nLeUiJ0IjkoH2WGQfemh69mM"
+// Date: Thu, 30 Sep 2021 19:38:09 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.001675s
+// Request duration: 0.001893s
 #+END_SRC
 *** getProduct
 #+begin_src restclient
-GET http://localhost:3000/products/true
+GET http://localhost:3000/products/123
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC js
 {
-  "statusCode": 400,
-  "message": "hello is not an number",
-  "error": "Bad Request"
+  "statusCode": 404,
+  "message": "Product 123 is not found",
+  "error": "Not Found"
 }
-// GET http://localhost:3000/products/hello
-// HTTP/1.1 400 Bad Request
+// GET http://localhost:3000/products/123
+// HTTP/1.1 404 Not Found
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
 // Content-Length: 75
-// ETag: W/"4b-DloiNWhk/cPSi3mOYc/sIzRlcrA"
-// Date: Thu, 30 Sep 2021 17:31:20 GMT
+// ETag: W/"4b-vwO6b3X+tuzmslfTUU6SbTy416s"
+// Date: Thu, 30 Sep 2021 17:33:14 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.007728s
+// Request duration: 0.007902s
 #+END_SRC
 ** Methods Post
 *** Create product
@@ -80,11 +79,11 @@ GET http://localhost:3000/products/true
 POST http://localhost:3000/products
 Content-Type: application/json
 {
-  "id": 2,
   "name": "Smartphone",
   "description": "This is technology",
   "price": 100,
-  "stock": 5
+  "stock": 5,
+  "image": "https://google.com/"
 }
 #+end_src
 
@@ -93,31 +92,32 @@ Content-Type: application/json
 {
   "message": "Action create",
   "payload": {
-    "id": 2,
+    "id": 3,
     "name": "Smartphone",
     "description": "This is technology",
     "price": 100,
-    "stock": 5
+    "stock": 5,
+    "image": "https://google.com/"
   }
 }
 // POST http://localhost:3000/products
 // HTTP/1.1 201 Created
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 123
-// ETag: W/"7b-UzEY4be5TXsNLwVv0hJF5wBJiis"
-// Date: Thu, 30 Sep 2021 15:40:15 GMT
+// Content-Length: 153
+// ETag: W/"99-1hr9wmVZWFSg0UZbB6SnExro8Y4"
+// Date: Thu, 30 Sep 2021 19:37:42 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.002200s
+// Request duration: 0.003755s
 #+END_SRC
 ** Methods Patch
 *** update product
 #+begin_src restclient
-PATCH http://localhost:3000/products/1
+PUT http://localhost:3000/products/2
 Content-Type: application/json
 {
-    "name": "Product Ultimate"
+    "price": 105
 }
 
 #+end_src
@@ -129,26 +129,30 @@ Content-Type: application/json
   "payload": {
     "message": "OK",
     "payload": {
-      "id": "1",
-      "name": "Product 1",
-      "description": "bla bla",
-      "price": 122,
-      "stock": 12,
-      "image": ""
-    }
+      "id": 2,
+      "name": "Smartphone",
+      "description": "This is technology",
+      "price": 100,
+      "stock": 5,
+      "image": "https://google.com/"
+    },
+    "price": 105
   }
 }
-// PATCH http://localhost:3000/products/1
+// PUT http://localhost:3000/products/2
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 156
-// ETag: W/"9c-lbalq0qQDcusI1bkutU/2tYEtks"
-// Date: Wed, 29 Sep 2021 21:28:46 GMT
+// Content-Length: 196
+// ETag: W/"c4-sBVO5zTD3hNU0UjCNCaAvaGRrGI"
+// Date: Thu, 30 Sep 2021 19:37:48 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.002338s
+// Request duration: 0.002469s
 #+END_SRC
+
+#+RESULTS:
+
 ** Methods Delete
 *** Delete product
 #+begin_src restclient
