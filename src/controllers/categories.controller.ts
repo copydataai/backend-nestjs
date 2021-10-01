@@ -1,15 +1,48 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Body,
+  Post,
+  Put,
+  Delete,
+} from '@nestjs/common';
+
+import { CategoriesService } from '../services/categories.service';
+import {
+  CreateCategoriesDto,
+  UpdateCategoriesDto,
+} from '../dtos/categories.dtos';
 
 @Controller('categories')
 export class CategoriesController {
-  // If you want route static, you have what define before to route dinamic
-  @Get(':categoryId')
-  getCategory(@Param('categoryId') categoryId: string) {
-    return `Your category is ${categoryId}`;
+  constructor(private categoriesService: CategoriesService) {}
+
+  @Get()
+  getCategories() {
+    return this.categoriesService.findAll();
   }
 
-  @Get(':categoryId/products/:productId')
-  getCategoryAndProduct(@Param() { categoryId, productId }) {
-    return `This is category ${categoryId} with product ${productId}`;
+  @Get(':name')
+  getCategory(@Param('name') name: string) {
+    return this.categoriesService.findOne(name);
+  }
+
+  @Post()
+  createCategory(@Body() payload: CreateCategoriesDto) {
+    return this.categoriesService.createOne(payload);
+  }
+
+  @Put(':name')
+  updateCategory(
+    @Param('name') name: string,
+    @Body() payload: UpdateCategoriesDto,
+  ) {
+    return this.categoriesService.updateOne(name, payload);
+  }
+
+  @Delete(':name')
+  deleteCategory(@Param('name') name: string) {
+    return this.categoriesService.deleteOne(name);
   }
 }

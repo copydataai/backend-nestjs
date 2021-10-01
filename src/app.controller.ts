@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Query, Body } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -8,24 +8,5 @@ export class AppController {
   @Get()
   getHello(): string {
     return 'Hello NESTJS!';
-  }
-
-  //Declare new route with /nuevo
-  @Get('nuevo')
-  newEndpoint() {
-    return 'I am new';
-  }
-
-  @Get('/route/')
-  otherNew() {
-    return 'with /sas/';
-  }
-
-  @Post('/')
-  create(@Body() payload: any) {
-    return {
-      message: 'action from create',
-      payload,
-    };
   }
 }

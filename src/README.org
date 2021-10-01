@@ -369,3 +369,134 @@ Brand delete
 #+END_SRC
 
 * Customers
+* Categories
+** Methods
+*** categories
+#+begin_src restclient
+GET http://localhost:3000/categories
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+[
+  {
+    "id": 1,
+    "name": "Geek"
+  },
+  {
+    "id": 2,
+    "name": "DC"
+  },
+  {
+    "id": 3,
+    "name": "Update category"
+  }
+]
+// GET http://localhost:3000/categories
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 79
+// ETag: W/"4f-QsodOl/pf4ASJafB7I7F2LhXf2s"
+// Date: Fri, 01 Oct 2021 21:58:00 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002160s
+#+END_SRC
+
+*** category
+#+begin_src restclient
+GET http://localhost:3000/categories/geek
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 1,
+  "name": "Geek"
+}
+// GET http://localhost:3000/categories/geek
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 22
+// ETag: W/"16-M+dGumqt8Fml3IHHzyVjpzSoSXI"
+// Date: Fri, 01 Oct 2021 21:52:30 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.001715s
+#+END_SRC
+
+*** create category
+#+begin_src restclient
+POST http://localhost:3000/categories
+Content-Type: application/json
+{
+    "name": "Finally"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 4,
+  "name": "Finally"
+}
+// POST http://localhost:3000/categories
+// HTTP/1.1 201 Created
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 25
+// ETag: W/"19-JmQbDARCqBiDakbIXB3PDQ+9+Jo"
+// Date: Fri, 01 Oct 2021 21:57:12 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002538s
+#+END_SRC
+
+*** update category
+#+begin_src restclient
+PUT http://localhost:3000/categories/logitech
+Content-Type: application/json
+{
+    "name": "Update category"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 3,
+  "name": "Logitech"
+}
+// PUT http://localhost:3000/categories/logitech
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 26
+// ETag: W/"1a-l2xgB2hiDIXxq2VYcXRZ8Y/qoq4"
+// Date: Fri, 01 Oct 2021 21:57:26 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002592s
+#+END_SRC
+
+*** delete category
+#+begin_src restclient
+DELETE http://localhost:3000/categories/logitech
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC html
+category is delete
+<!-- DELETE http://localhost:3000/categories/logitech -->
+<!-- HTTP/1.1 200 OK -->
+<!-- X-Powered-By: Express -->
+<!-- Content-Type: text/html; charset=utf-8 -->
+<!-- Content-Length: 18 -->
+<!-- ETag: W/"12-JGyQ+G/taQ3FP54OSGb6l28Uc2c" -->
+<!-- Date: Fri, 01 Oct 2021 21:57:48 GMT -->
+<!-- Connection: keep-alive -->
+<!-- Keep-Alive: timeout=5 -->
+<!-- Request duration: 0.001850s -->
+#+END_SRC
