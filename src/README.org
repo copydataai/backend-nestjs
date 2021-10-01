@@ -83,33 +83,30 @@ Content-Type: application/json
   "description": "This is technology",
   "price": 100,
   "stock": 5,
-  "image": "https://google.com/"
+  "image": "https://google.com/",
+  "otro": "Nothing"
 }
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC js
 {
-  "message": "Action create",
-  "payload": {
-    "id": 3,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5,
-    "image": "https://google.com/"
-  }
+  "statusCode": 400,
+  "message": [
+    "property otro should not exist"
+  ],
+  "error": "Bad Request"
 }
 // POST http://localhost:3000/products
-// HTTP/1.1 201 Created
+// HTTP/1.1 400 Bad Request
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 153
-// ETag: W/"99-1hr9wmVZWFSg0UZbB6SnExro8Y4"
-// Date: Thu, 30 Sep 2021 19:37:42 GMT
+// Content-Length: 85
+// ETag: W/"55-GhT1gLhv7JcVI3zbfpUKzAQ7fp4"
+// Date: Thu, 30 Sep 2021 20:23:22 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.003755s
+// Request duration: 0.022666s
 #+END_SRC
 ** Methods Patch
 *** update product
@@ -177,3 +174,198 @@ DELETE http://localhost:3000/products/122
 // Keep-Alive: timeout=5
 // Request duration: 0.008151s
 #+END_SRC
+* Users
+** Methods Get
+*** Get users
+#+begin_src restclient
+GET http://localhost:3000/users
+#+end_src
+
+#+RESULTS:
+#+begin_example
+,#+BEGIN_SRC js
+[
+  {
+    "id": 1,
+    "email": "juan@gmail.com",
+    "password": "juanforever",
+    "role": "user"
+  }
+]
+// GET http://localhost:3000/users
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 74
+// ETag: W/"4a-t9+xHTiCTNMv9tvG9YovEFO1Lqs"
+// Date: Fri, 01 Oct 2021 19:20:51 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.133374s
+,#+END_SRC
+#+end_example
+
+*** Get user
+#+begin_src restclient
+GET http://localhost:3000/users/1
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "statusCode": 404,
+  "message": "User with id: 1 not exists",
+  "error": "Not Found"
+}
+// GET http://localhost:3000/users/1
+// HTTP/1.1 404 Not Found
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 77
+// ETag: W/"4d-L0/6Lsugs9yA8puRE7N2SBj1r7g"
+// Date: Fri, 01 Oct 2021 19:20:57 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002749s
+#+END_SRC
+
+** Methods Post
+** Methods Put
+** Methods Delete
+* Brand
+** Method Get
+*** Brands
+#+begin_src restclient
+GET http://localhost:3000/brand
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+[
+  {
+    "id": 0,
+    "name": "asus"
+  },
+  {
+    "id": 2,
+    "name": "logitech",
+    "image": "logitech.com/brand/exe"
+  },
+  {
+    "id": 4,
+    "name": "rockStar",
+    "image": "logitech.com/brand/exe"
+  }
+]
+// GET http://localhost:3000/brand
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 144
+// ETag: W/"90-CA0Vse0mV4Hj6xpzOrmBGIjcZ6c"
+// Date: Fri, 01 Oct 2021 19:55:17 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.001712s
+#+END_SRC
+
+*** Brand
+#+begin_src restclient
+GET http://localhost:3000/brand/rock
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 3,
+  "name": "Rock",
+  "image": "logitech.com/brand/exe"
+}
+// GET http://localhost:3000/brand/rock
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 55
+// ETag: W/"37-799hAD1YR1uLR7E0T7vpjZuPsoY"
+// Date: Fri, 01 Oct 2021 19:40:25 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002110s
+#+END_SRC
+*** Create Brand
+#+begin_src restclient
+POST http://localhost:3000/brand
+Content-Type: application/json
+{
+    "name": "rockStar",
+    "image": "logitech.com/brand/exe"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 4,
+  "name": "rockStar",
+  "image": "logitech.com/brand/exe"
+}
+// POST http://localhost:3000/brand
+// HTTP/1.1 201 Created
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 59
+// ETag: W/"3b-lWbrbxXeplF9PjWpo7QJ3V8ojeU"
+// Date: Fri, 01 Oct 2021 19:55:03 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.003108s
+#+END_SRC
+*** Update Brand
+#+begin_src restclient
+PUT http://localhost:3000/brand/rock
+Content-Type: application/json
+{
+    "name": "rockStar",
+    "image": "rockStar.com"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 2,
+  "name": "rockStar",
+  "image": "rockStar.com"
+}
+// PUT http://localhost:3000/brand/rock
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 49
+// ETag: W/"31-h2U8360/NQfzk7fB5CKCOaJeSbM"
+// Date: Fri, 01 Oct 2021 19:49:56 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002711s
+#+END_SRC
+*** Delete Brand
+#+begin_src restclient
+DELETE http://localhost:3000/brand/rock
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC html
+Brand delete
+<!-- DELETE http://localhost:3000/brand/rock -->
+<!-- HTTP/1.1 200 OK -->
+<!-- X-Powered-By: Express -->
+<!-- Content-Type: text/html; charset=utf-8 -->
+<!-- Content-Length: 12 -->
+<!-- ETag: W/"c-+evyretQemBVZfg+5RiWdeelW5k" -->
+<!-- Date: Fri, 01 Oct 2021 19:55:07 GMT -->
+<!-- Connection: keep-alive -->
+<!-- Keep-Alive: timeout=5 -->
+<!-- Request duration: 0.001649s -->
+#+END_SRC
+
+* Customers
