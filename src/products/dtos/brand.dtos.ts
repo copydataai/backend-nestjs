@@ -4,11 +4,11 @@ import { PartialType } from '@nestjs/mapped-types';
 export class CreateBrandDto {
   @IsString()
   @IsNotEmpty()
-  name: string;
-  @IsString()
+  readonly name: string;
+
   @IsUrl()
   @IsNotEmpty()
-  image: string;
+  readonly image: string;
 }
 
 export class UpdateBrandDto extends PartialType(CreateBrandDto) {}

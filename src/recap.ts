@@ -3,24 +3,15 @@ const myAge = 12;
 const suma = (a: number, b: number) => {
   return a + b;
 };
+suma(12, 23);
 
-suma(12, 12);
-
-class Person {
-  // private age;
-  // private name;
-
-  //For declare type datas private
-  constructor(private age: number, private name: string) {
-    //and Define type de datas
-    this.age = age;
-    this.name = name;
-  }
+class Persona {
+  constructor(private age: number, private name: string) {}
 
   getSummary() {
-    return `my name is ${this.name} and i have ${this.age} years old`;
+    return `my name is ${this.name}, ${this.age}`;
   }
 }
 
-const nicolas = new Person(15, 'Alex');
-console.log(nicolas.getSummary());
+const nicolas = new Persona(15, 'nicolas');
+nicolas.getSummary();
