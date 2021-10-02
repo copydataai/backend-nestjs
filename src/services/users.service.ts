@@ -25,7 +25,7 @@ export class UsersService {
   }
 
   createOne(payload: CreateUserDto) {
-    this.counterId = this.counterId + 1;
+    this.counterId++;
     const newUser = {
       id: this.counterId,
       ...payload,
@@ -35,6 +35,25 @@ export class UsersService {
   }
 
   updateOne(id: number, payload: any) {
-    return this.users;
+    const index = this.users.findIndex((item) => item.id === id);
+    if (!index) {
+      throw new NotFoundException('This user not exists');
+    }
+    const value = this.users[index];
+    const updateUser = {
+      ...value,
+      ...payload,
+    };
+    this.users[index] = updateUser;
+    return updateUser;
+  }
+
+  deleteOne(id: number) {
+    const index = this.users.findIndex((item) => item.id === id);
+    if (!index) {
+      throw new NotFoundException('This user not exists');
+    }
+    this.users.splice(index, 1);
+    return 'This user is delete';
   }
 }

@@ -182,13 +182,18 @@ GET http://localhost:3000/users
 #+end_src
 
 #+RESULTS:
-#+begin_example
-,#+BEGIN_SRC js
+#+BEGIN_SRC js
 [
   {
     "id": 1,
     "email": "juan@gmail.com",
     "password": "juanforever",
+    "role": "user"
+  },
+  {
+    "id": 3,
+    "email": "hello@gmail.com",
+    "password": "hello_2021",
     "role": "user"
   }
 ]
@@ -196,14 +201,13 @@ GET http://localhost:3000/users
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 74
-// ETag: W/"4a-t9+xHTiCTNMv9tvG9YovEFO1Lqs"
-// Date: Fri, 01 Oct 2021 19:20:51 GMT
+// Content-Length: 147
+// ETag: W/"93-rPotayKpYeZ8dcvsS2Yuax/hC8k"
+// Date: Sat, 02 Oct 2021 00:40:08 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.133374s
-,#+END_SRC
-#+end_example
+// Request duration: 0.001612s
+#+END_SRC
 
 *** Get user
 #+begin_src restclient
@@ -214,24 +218,101 @@ GET http://localhost:3000/users/1
 #+BEGIN_SRC js
 {
   "statusCode": 404,
-  "message": "User with id: 1 not exists",
+  "message": "User with id: 2 not exists",
   "error": "Not Found"
 }
-// GET http://localhost:3000/users/1
+// GET http://localhost:3000/users/2
 // HTTP/1.1 404 Not Found
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
 // Content-Length: 77
-// ETag: W/"4d-L0/6Lsugs9yA8puRE7N2SBj1r7g"
-// Date: Fri, 01 Oct 2021 19:20:57 GMT
+// ETag: W/"4d-TUjuZ5mQrWcNPUrAFJnZpTINBqA"
+// Date: Sat, 02 Oct 2021 00:40:19 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.002749s
+// Request duration: 0.002036s
 #+END_SRC
 
 ** Methods Post
+#+begin_src restclient
+POST http://localhost:3000/users
+Content-Type: application/json
+{
+    "email": "hello@gmail.com",
+    "password": "hello_2021",
+    "role": "user"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 3,
+  "email": "hello@gmail.com",
+  "password": "hello_2021",
+  "role": "user"
+}
+// POST http://localhost:3000/users
+// HTTP/1.1 201 Created
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 72
+// ETag: W/"48-1U6FXlnieqhLFw42p1dA3Cnw188"
+// Date: Sat, 02 Oct 2021 00:37:56 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.005702s
+#+END_SRC
+
 ** Methods Put
+#+begin_src restclient
+PUT http://localhost:3000/users/2
+Content-Type: application/json
+{
+    "password": "hello_2021"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 2,
+  "email": "adios@gmail.com",
+  "password": "hello_2021",
+  "role": "user"
+}
+// PUT http://localhost:3000/users/2
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 72
+// ETag: W/"48-1qSQAZ+qovBiOZViFfQVL6CMMXw"
+// Date: Sat, 02 Oct 2021 00:39:50 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002488s
+#+END_SRC
+
 ** Methods Delete
+#+begin_src restclient
+DELETE http://localhost:3000/users/2
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC html
+This user is delete
+<!-- DELETE http://localhost:3000/users/2 -->
+<!-- HTTP/1.1 200 OK -->
+<!-- X-Powered-By: Express -->
+<!-- Content-Type: text/html; charset=utf-8 -->
+<!-- Content-Length: 19 -->
+<!-- ETag: W/"13-kbjy8/Q5dTwoltSoa3tc3oaDGgk" -->
+<!-- Date: Sat, 02 Oct 2021 00:40:03 GMT -->
+<!-- Connection: keep-alive -->
+<!-- Keep-Alive: timeout=5 -->
+<!-- Request duration: 0.001797s -->
+#+END_SRC
+
 * Brand
 ** Method Get
 *** Brands
@@ -369,6 +450,124 @@ Brand delete
 #+END_SRC
 
 * Customers
+** Methods
+*** customers
+#+begin_src restclient
+GET http://localhost:3000/customer
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+[
+  {
+    "id": 1,
+    "name": "Juan",
+    "lastName": "Garza",
+    "phone": "+5917850131"
+  },
+  {
+    "id": 3,
+    "name": "Julian",
+    "lastName": "De la Vega",
+    "phone": "+51960419848"
+  }
+]
+// GET http://localhost:3000/customer
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 137
+// ETag: W/"89-S99dPYILGnRMN47ePIMLUdHkGqw"
+// Date: Fri, 01 Oct 2021 23:09:46 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.001737s
+#+END_SRC
+
+*** customer
+#+begin_src restclient
+GET http://localhost:3000/customer
+#+end_src
+*** create customer
+#+begin_src restclient
+POST http://localhost:3000/customer
+Content-Type: application/json
+{
+    "name": "Rafael",
+    "lastName": "De la Vega",
+    "phone": "+51960419848"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 3,
+  "name": "Rafael",
+  "lastName": "De la Vega",
+  "phone": "+51960419848"
+}
+// POST http://localhost:3000/customer
+// HTTP/1.1 201 Created
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 71
+// ETag: W/"47-l79x4C4urhPBRsjXyFaE3mNCTzM"
+// Date: Fri, 01 Oct 2021 23:05:52 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002551s
+#+END_SRC
+
+*** update customer
+#+begin_src restclient
+PUT http://localhost:3000/customer/3
+Content-Type: application/json
+{
+    "name": "Julian"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 3,
+  "name": "Julian",
+  "lastName": "De la Vega",
+  "phone": "+51960419848"
+}
+// PUT http://localhost:3000/customer/3
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 71
+// ETag: W/"47-/QoEV8q4uNo9z8N6rgeJW+6282M"
+// Date: Fri, 01 Oct 2021 23:09:13 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.001788s
+#+END_SRC
+
+*** delete customer
+#+begin_src restclient
+DELETE http://localhost:3000/customer/2
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC html
+delete customer
+<!-- DELETE http://localhost:3000/customer/2 -->
+<!-- HTTP/1.1 200 OK -->
+<!-- X-Powered-By: Express -->
+<!-- Content-Type: text/html; charset=utf-8 -->
+<!-- Content-Length: 15 -->
+<!-- ETag: W/"f-sgJodHO6R8/jLFDSqVzauMNNuOs" -->
+<!-- Date: Fri, 01 Oct 2021 23:09:37 GMT -->
+<!-- Connection: keep-alive -->
+<!-- Keep-Alive: timeout=5 -->
+<!-- Request duration: 0.001865s -->
+#+END_SRC
+
 * Categories
 ** Methods
 *** categories
