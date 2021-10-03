@@ -3,9 +3,10 @@ import { UsersController } from './controllers/users.controller';
 import { CustomerController } from './controllers/customer.controller';
 import { UsersService } from './services/users.service';
 import { CustomersService } from './services/customers.service';
+import { ProductsModule } from 'src/products/products.module';
 
 @Module({
-  imports: [],
+  imports: [ProductsModule],
   controllers: [CustomerController, UsersController],
   providers: [UsersService, CustomersService],
 })

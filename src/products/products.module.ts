@@ -7,8 +7,8 @@ import { BrandController } from './controllers/brand.controller';
 import { CategoriesController } from './controllers/categories.controller';
 
 @Module({
-  imports: [],
   controllers: [ProductsController, BrandController, CategoriesController],
   providers: [CategoriesService, BrandService, ProductsService],
+  exports: [ProductsService],
 })
 export class ProductsModule {}
