@@ -9,7 +9,7 @@ import {
   NotFoundException,
   ParseIntPipe,
 } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from 'src/dtos/users.dtos';
+import { CreateUserDto, UpdateUserDto } from '../dtos/users.dtos';
 import { UsersService } from '../services/users.service';
 @Controller('users')
 export class UsersController {

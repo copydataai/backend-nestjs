@@ -31,6 +31,39 @@ GET http://localhost:3000/products
     "price": 105
   },
   {
+    "message": "OK",
+    "payload": {
+      "id": 3,
+      "name": "Smartphone",
+      "description": "This is technology",
+      "price": 100,
+      "stock": 5,
+      "image": "https://google.com/"
+    },
+    "price": 105
+  }
+]
+// GET http://localhost:3000/products
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 412
+// ETag: W/"19c-sqnYypowulkKsJT+NY0dBlDGCHc"
+// Date: Sun, 03 Oct 2021 20:02:01 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002032s
+#+END_SRC
+*** getProduct
+#+begin_src restclient
+GET http://localhost:3000/products/3
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "message": "OK",
+  "payload": {
     "id": 3,
     "name": "Smartphone",
     "description": "This is technology",
@@ -38,40 +71,17 @@ GET http://localhost:3000/products
     "stock": 5,
     "image": "https://google.com/"
   }
-]
-// GET http://localhost:3000/products
+}
+// GET http://localhost:3000/products/3
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 373
-// ETag: W/"175-zw/nLeUiJ0IjkoH2WGQfemh69mM"
-// Date: Thu, 30 Sep 2021 19:38:09 GMT
+// Content-Length: 142
+// ETag: W/"8e-5/NhMmXz/k18cf/P2Qph5AlnNqo"
+// Date: Sun, 03 Oct 2021 20:01:19 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.001893s
-#+END_SRC
-*** getProduct
-#+begin_src restclient
-GET http://localhost:3000/products/123
-#+end_src
-
-#+RESULTS:
-#+BEGIN_SRC js
-{
-  "statusCode": 404,
-  "message": "Product 123 is not found",
-  "error": "Not Found"
-}
-// GET http://localhost:3000/products/123
-// HTTP/1.1 404 Not Found
-// X-Powered-By: Express
-// Content-Type: application/json; charset=utf-8
-// Content-Length: 75
-// ETag: W/"4b-vwO6b3X+tuzmslfTUU6SbTy416s"
-// Date: Thu, 30 Sep 2021 17:33:14 GMT
-// Connection: keep-alive
-// Keep-Alive: timeout=5
-// Request duration: 0.007902s
+// Request duration: 0.002459s
 #+END_SRC
 ** Methods Post
 *** Create product
@@ -83,35 +93,38 @@ Content-Type: application/json
   "description": "This is technology",
   "price": 100,
   "stock": 5,
-  "image": "https://google.com/",
-  "otro": "Nothing"
+  "image": "https://google.com/"
 }
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC js
 {
-  "statusCode": 400,
-  "message": [
-    "property otro should not exist"
-  ],
-  "error": "Bad Request"
+  "message": "Action create",
+  "payload": {
+    "id": 4,
+    "name": "Smartphone",
+    "description": "This is technology",
+    "price": 100,
+    "stock": 5,
+    "image": "https://google.com/"
+  }
 }
 // POST http://localhost:3000/products
-// HTTP/1.1 400 Bad Request
+// HTTP/1.1 201 Created
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 85
-// ETag: W/"55-GhT1gLhv7JcVI3zbfpUKzAQ7fp4"
-// Date: Thu, 30 Sep 2021 20:23:22 GMT
+// Content-Length: 153
+// ETag: W/"99-RmKKmklUgeuPWs9TCuOC4b7U1uE"
+// Date: Sun, 03 Oct 2021 20:01:11 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.022666s
+// Request duration: 0.033186s
 #+END_SRC
 ** Methods Patch
 *** update product
 #+begin_src restclient
-PUT http://localhost:3000/products/2
+PUT http://localhost:3000/products/3
 Content-Type: application/json
 {
     "price": 105
@@ -126,7 +139,7 @@ Content-Type: application/json
   "payload": {
     "message": "OK",
     "payload": {
-      "id": 2,
+      "id": 3,
       "name": "Smartphone",
       "description": "This is technology",
       "price": 100,
@@ -136,16 +149,16 @@ Content-Type: application/json
     "price": 105
   }
 }
-// PUT http://localhost:3000/products/2
+// PUT http://localhost:3000/products/3
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
 // Content-Length: 196
-// ETag: W/"c4-sBVO5zTD3hNU0UjCNCaAvaGRrGI"
-// Date: Thu, 30 Sep 2021 19:37:48 GMT
+// ETag: W/"c4-XtVj9o/oDSDbJaLb5Umdmabfyxk"
+// Date: Sun, 03 Oct 2021 20:01:43 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.002469s
+// Request duration: 0.032602s
 #+END_SRC
 
 #+RESULTS:
@@ -153,26 +166,22 @@ Content-Type: application/json
 ** Methods Delete
 *** Delete product
 #+begin_src restclient
-DELETE http://localhost:3000/products/122
+DELETE http://localhost:3000/products/4
 #+end_src
 
 #+RESULTS:
-#+BEGIN_SRC js
-{
-  "statusCode": 404,
-  "message": "Product is not found",
-  "error": "Not Found"
-}
-// DELETE http://localhost:3000/products/122
-// HTTP/1.1 404 Not Found
-// X-Powered-By: Express
-// Content-Type: application/json; charset=utf-8
-// Content-Length: 71
-// ETag: W/"47-pd80z3Q8e7lQ4dvmNXfheuWKAnk"
-// Date: Thu, 30 Sep 2021 14:49:30 GMT
-// Connection: keep-alive
-// Keep-Alive: timeout=5
-// Request duration: 0.008151s
+#+BEGIN_SRC html
+Product delete
+<!-- DELETE http://localhost:3000/products/4 -->
+<!-- HTTP/1.1 200 OK -->
+<!-- X-Powered-By: Express -->
+<!-- Content-Type: text/html; charset=utf-8 -->
+<!-- Content-Length: 14 -->
+<!-- ETag: W/"e-Clfquo5FX//PVZpEtu43ZZiNKy4" -->
+<!-- Date: Sun, 03 Oct 2021 20:01:57 GMT -->
+<!-- Connection: keep-alive -->
+<!-- Keep-Alive: timeout=5 -->
+<!-- Request duration: 0.002009s -->
 #+END_SRC
 * Users
 ** Methods Get
