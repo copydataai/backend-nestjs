@@ -683,20 +683,20 @@ category is delete
 * Home
 ** GEt
 #+begin_src restclient
-GET http://localhost:3000
+GET http://localhost:3000/
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC html
-Hello World! PROD_KEY_ULTRA
-<!-- GET http://localhost:3000 -->
+Hello World! 123414 undefined
+<!-- GET http://localhost:3000/ -->
 <!-- HTTP/1.1 200 OK -->
 <!-- X-Powered-By: Express -->
 <!-- Content-Type: text/html; charset=utf-8 -->
-<!-- Content-Length: 27 -->
-<!-- ETag: W/"1b-41qB4wTXs8GsfjfbZMQaBVC5Bpk" -->
-<!-- Date: Mon, 04 Oct 2021 21:02:23 GMT -->
+<!-- Content-Length: 29 -->
+<!-- ETag: W/"1d-oBQ5ZIMr2GAMUWrl7DNJ0pB8tvI" -->
+<!-- Date: Mon, 04 Oct 2021 22:27:09 GMT -->
 <!-- Connection: keep-alive -->
 <!-- Keep-Alive: timeout=5 -->
-<!-- Request duration: 0.030116s -->
+<!-- Request duration: 0.002008s -->
 #+END_SRC
