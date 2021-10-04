@@ -190,34 +190,6 @@ Product delete
 GET http://localhost:3000/users
 #+end_src
 
-#+RESULTS:
-#+BEGIN_SRC js
-[
-  {
-    "id": 1,
-    "email": "juan@gmail.com",
-    "password": "juanforever",
-    "role": "user"
-  },
-  {
-    "id": 3,
-    "email": "hello@gmail.com",
-    "password": "hello_2021",
-    "role": "user"
-  }
-]
-// GET http://localhost:3000/users
-// HTTP/1.1 200 OK
-// X-Powered-By: Express
-// Content-Type: application/json; charset=utf-8
-// Content-Length: 147
-// ETag: W/"93-rPotayKpYeZ8dcvsS2Yuax/hC8k"
-// Date: Sat, 02 Oct 2021 00:40:08 GMT
-// Connection: keep-alive
-// Keep-Alive: timeout=5
-// Request duration: 0.001612s
-#+END_SRC
-
 *** Get user
 #+begin_src restclient
 GET http://localhost:3000/users/1
@@ -723,8 +695,8 @@ Hello World! PROD_KEY_ULTRA
 <!-- Content-Type: text/html; charset=utf-8 -->
 <!-- Content-Length: 27 -->
 <!-- ETag: W/"1b-41qB4wTXs8GsfjfbZMQaBVC5Bpk" -->
-<!-- Date: Mon, 04 Oct 2021 20:43:49 GMT -->
+<!-- Date: Mon, 04 Oct 2021 21:02:23 GMT -->
 <!-- Connection: keep-alive -->
 <!-- Keep-Alive: timeout=5 -->
-<!-- Request duration: 0.011618s -->
+<!-- Request duration: 0.030116s -->
 #+END_SRC
