@@ -708,3 +708,23 @@ category is delete
 <!-- Keep-Alive: timeout=5 -->
 <!-- Request duration: 0.001850s -->
 #+END_SRC
+* Home
+** GEt
+#+begin_src restclient
+GET http://localhost:3000
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC html
+Hello World! 1236536512
+<!-- GET http://localhost:3000 -->
+<!-- HTTP/1.1 200 OK -->
+<!-- X-Powered-By: Express -->
+<!-- Content-Type: text/html; charset=utf-8 -->
+<!-- Content-Length: 23 -->
+<!-- ETag: W/"17-Hb+QZvK6V9NC2dKobpSUeN9Y6IM" -->
+<!-- Date: Mon, 04 Oct 2021 20:10:30 GMT -->
+<!-- Connection: keep-alive -->
+<!-- Keep-Alive: timeout=5 -->
+<!-- Request duration: 0.002033s -->
+#+END_SRC

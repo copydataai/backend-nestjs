@@ -27,7 +27,7 @@ export class UsersService {
     return value;
   }
 
-  getOrders(id: number) {
+  getOrders(id: number): Order {
     const user = this.findOne(id);
     if (!user) {
       throw new NotFoundException("Don't have orders");
