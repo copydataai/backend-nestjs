@@ -688,15 +688,15 @@ GET http://localhost:3000/
 
 #+RESULTS:
 #+BEGIN_SRC html
-Hello World! 123414 undefined
+Hello World! 3333 my_db_stag 1111
 <!-- GET http://localhost:3000/ -->
 <!-- HTTP/1.1 200 OK -->
 <!-- X-Powered-By: Express -->
 <!-- Content-Type: text/html; charset=utf-8 -->
-<!-- Content-Length: 29 -->
-<!-- ETag: W/"1d-oBQ5ZIMr2GAMUWrl7DNJ0pB8tvI" -->
-<!-- Date: Mon, 04 Oct 2021 22:27:09 GMT -->
+<!-- Content-Length: 33 -->
+<!-- ETag: W/"21-lDkRmlWBnQ8vkwSceLvGlWAOpFs" -->
+<!-- Date: Mon, 04 Oct 2021 23:37:20 GMT -->
 <!-- Connection: keep-alive -->
 <!-- Keep-Alive: timeout=5 -->
-<!-- Request duration: 0.002008s -->
+<!-- Request duration: 0.005328s -->
 #+END_SRC
