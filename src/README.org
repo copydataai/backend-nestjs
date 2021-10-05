@@ -307,28 +307,18 @@ GET http://localhost:3000/brand
   {
     "id": 0,
     "name": "asus"
-  },
-  {
-    "id": 2,
-    "name": "logitech",
-    "image": "logitech.com/brand/exe"
-  },
-  {
-    "id": 4,
-    "name": "rockStar",
-    "image": "logitech.com/brand/exe"
   }
 ]
 // GET http://localhost:3000/brand
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 144
-// ETag: W/"90-CA0Vse0mV4Hj6xpzOrmBGIjcZ6c"
-// Date: Fri, 01 Oct 2021 19:55:17 GMT
+// Content-Length: 24
+// ETag: W/"18-I+GOWygh2jlrjoRTPEkWmWG5k74"
+// Date: Tue, 05 Oct 2021 21:47:45 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.001712s
+// Request duration: 0.008055s
 #+END_SRC
 
 *** Brand
@@ -683,20 +673,31 @@ category is delete
 * Home
 ** GEt
 #+begin_src restclient
-GET http://localhost:3000/
+GET http://localhost:3000/tasks
 #+end_src
 
 #+RESULTS:
-#+BEGIN_SRC html
-Hello World! 3333 my_db_stag 1111
-<!-- GET http://localhost:3000/ -->
-<!-- HTTP/1.1 200 OK -->
-<!-- X-Powered-By: Express -->
-<!-- Content-Type: text/html; charset=utf-8 -->
-<!-- Content-Length: 33 -->
-<!-- ETag: W/"21-lDkRmlWBnQ8vkwSceLvGlWAOpFs" -->
-<!-- Date: Mon, 04 Oct 2021 23:37:20 GMT -->
-<!-- Connection: keep-alive -->
-<!-- Keep-Alive: timeout=5 -->
-<!-- Request duration: 0.005328s -->
+#+BEGIN_SRC js
+[
+  {
+    "_id": "615cb0912d022b03d2d81bea",
+    "name": "tarea 1",
+    "complete": "Course from Docker"
+  },
+  {
+    "_id": "615cbdfe2d022b03d2d81beb",
+    "name": "Course from Django",
+    "complete": true
+  }
+]
+// GET http://localhost:3000/tasks
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 164
+// ETag: W/"a4-Qv192nZqt3wpS8uNEUjkLVswbbE"
+// Date: Tue, 05 Oct 2021 21:48:06 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.011264s
 #+END_SRC
