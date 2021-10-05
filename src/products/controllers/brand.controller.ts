@@ -10,12 +10,15 @@ import {
 } from '@nestjs/common';
 import { CreateBrandDto, UpdateBrandDto } from '../dtos/brand.dto';
 import { BrandService } from '../services/brand.service';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
+@ApiTags('brand')
 @Controller('brand')
 export class BrandController {
   constructor(private brandService: BrandService) {}
 
   @Get()
+  @ApiOperation({ summary: 'List of brands' })
   getBrands() {
     return this.brandService.getAll();
   }
