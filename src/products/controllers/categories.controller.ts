@@ -12,7 +12,7 @@ import { CategoriesService } from '../services/categories.service';
 import {
   CreateCategoriesDto,
   UpdateCategoriesDto,
-} from '../dtos/categories.dtos';
+} from '../dtos/categories.dto';
 
 @Controller('categories')
 export class CategoriesController {

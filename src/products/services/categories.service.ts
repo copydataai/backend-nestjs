@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   CreateCategoriesDto,
   UpdateCategoriesDto,
-} from '../dtos/categories.dtos';
+} from '../dtos/categories.dto';
 
 import { Category } from '../entities/category.entity';
 

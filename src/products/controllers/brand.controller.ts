@@ -8,7 +8,7 @@ import {
   Delete,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateBrandDto, UpdateBrandDto } from '../dtos/brand.dtos';
+import { CreateBrandDto, UpdateBrandDto } from '../dtos/brand.dto';
 import { BrandService } from '../services/brand.service';
 
 @Controller('brand')
