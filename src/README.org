@@ -11,52 +11,37 @@ GET http://localhost:3000/products
 #+BEGIN_SRC js
 [
   {
-    "id": 0,
-    "name": "Product 1",
-    "description": "This is first product.",
-    "price": 122,
-    "stock": 12,
-    "image": ""
+    "_id": "615ce7eb2d022b03d2d81bee",
+    "name": "Smartphone",
+    "description": "this is technology",
+    "price": 102,
+    "stock": 1
   },
   {
-    "message": "OK",
-    "payload": {
-      "id": 2,
-      "name": "Smartphone",
-      "description": "This is technology",
-      "price": 100,
-      "stock": 5,
-      "image": "https://google.com/"
-    },
-    "price": 105
-  },
-  {
-    "message": "OK",
-    "payload": {
-      "id": 3,
-      "name": "Smartphone",
-      "description": "This is technology",
-      "price": 100,
-      "stock": 5,
-      "image": "https://google.com/"
-    },
-    "price": 105
+    "_id": "615ce8472d022b03d2d81bef",
+    "name": "Smart",
+    "description": "this is technology",
+    "price": 12,
+    "stock": 12
   }
 ]
 // GET http://localhost:3000/products
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 412
-// ETag: W/"19c-sqnYypowulkKsJT+NY0dBlDGCHc"
-// Date: Sun, 03 Oct 2021 20:02:01 GMT
+// Content-Length: 220
+// ETag: W/"dc-LMnovAdU7nzoi0rGPLVaQ+p0aD4"
+// Date: Wed, 06 Oct 2021 00:06:01 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.002032s
+// Request duration: 0.043709s
 #+END_SRC
+
+#+RESULTS:
+
 *** getProduct
 #+begin_src restclient
-GET http://localhost:3000/products/3
+GET http://localhost:3000/products/615ce8472d022b03d2d81bef
 #+end_src
 
 #+RESULTS:
@@ -64,24 +49,23 @@ GET http://localhost:3000/products/3
 {
   "message": "OK",
   "payload": {
-    "id": 3,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5,
-    "image": "https://google.com/"
+    "_id": "615ce8472d022b03d2d81bef",
+    "name": "Smart",
+    "description": "this is technology",
+    "price": 12,
+    "stock": 12
   }
 }
-// GET http://localhost:3000/products/3
+// GET http://localhost:3000/products/615ce8472d022b03d2d81bef
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 142
-// ETag: W/"8e-5/NhMmXz/k18cf/P2Qph5AlnNqo"
-// Date: Sun, 03 Oct 2021 20:01:19 GMT
+// Content-Length: 133
+// ETag: W/"85-NcCj1hIfSI4Wu6fOdo0X3QubOac"
+// Date: Wed, 06 Oct 2021 00:08:27 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.002459s
+// Request duration: 0.014700s
 #+END_SRC
 ** Methods Post
 *** Create product
@@ -305,25 +289,29 @@ GET http://localhost:3000/brand
 #+BEGIN_SRC js
 [
   {
-    "id": 0,
-    "name": "asus"
+    "_id": "615cfbb62d022b03d2d81bf5",
+    "name": "Asus"
+  },
+  {
+    "_id": "615cfbcf2d022b03d2d81bf6",
+    "name": "Strix"
   }
 ]
 // GET http://localhost:3000/brand
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 24
-// ETag: W/"18-I+GOWygh2jlrjoRTPEkWmWG5k74"
-// Date: Tue, 05 Oct 2021 21:47:45 GMT
+// Content-Length: 100
+// ETag: W/"64-RxZbYKJLo0xykUEIndub3ArXeqg"
+// Date: Wed, 06 Oct 2021 01:29:19 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.008055s
+// Request duration: 0.027902s
 #+END_SRC
 
 *** Brand
 #+begin_src restclient
-GET http://localhost:3000/brand/rock
+GET http://localhost:3000/brand/Strix
 #+end_src
 
 #+RESULTS:
@@ -431,28 +419,21 @@ GET http://localhost:3000/customer
 #+BEGIN_SRC js
 [
   {
-    "id": 1,
+    "_id": "615cfb4e2d022b03d2d81bf2",
     "name": "Juan",
-    "lastName": "Garza",
-    "phone": "+5917850131"
-  },
-  {
-    "id": 3,
-    "name": "Julian",
-    "lastName": "De la Vega",
-    "phone": "+51960419848"
+    "lastName": "Valdes"
   }
 ]
 // GET http://localhost:3000/customer
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 137
-// ETag: W/"89-S99dPYILGnRMN47ePIMLUdHkGqw"
-// Date: Fri, 01 Oct 2021 23:09:46 GMT
+// Content-Length: 70
+// ETag: W/"46-6a17RAwahvqH8ctC30iINsKPqIY"
+// Date: Wed, 06 Oct 2021 01:28:15 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.001737s
+// Request duration: 0.047400s
 #+END_SRC
 
 *** customer
@@ -696,8 +677,10 @@ GET http://localhost:3000/tasks
 // Content-Type: application/json; charset=utf-8
 // Content-Length: 164
 // ETag: W/"a4-Qv192nZqt3wpS8uNEUjkLVswbbE"
-// Date: Tue, 05 Oct 2021 21:48:06 GMT
+// Date: Tue, 05 Oct 2021 22:54:24 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.011264s
+// Request duration: 0.034774s
 #+END_SRC
+
+#+RESULTS:

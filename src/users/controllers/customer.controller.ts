@@ -24,25 +24,25 @@ export class CustomerController {
   }
 
   @Get(':id')
-  getCustomer(@Param('id', ParseIntPipe) id: number) {
+  getCustomer(@Param('id') id: string) {
     return this.customerService.findOne(id);
   }
 
-  @Post()
-  createCustomer(@Body() payload: CreateCustomerDto) {
-    return this.customerService.createOne(payload);
-  }
+  // @Post()
+  // createCustomer(@Body() payload: CreateCustomerDto) {
+  //   return this.customerService.createOne(payload);
+  // }
 
-  @Put(':id')
-  updateCustomer(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() payload: UpdateCustomerDto,
-  ) {
-    return this.customerService.updateOne(id, payload);
-  }
+  // @Put(':id')
+  // updateCustomer(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() payload: UpdateCustomerDto,
+  // ) {
+  //   return this.customerService.updateOne(id, payload);
+  // }
 
-  @Delete(':id')
-  deleteCustomer(@Param('id', ParseIntPipe) id: number) {
-    return this.customerService.deleteOne(id);
-  }
+  // @Delete(':id')
+  // deleteCustomer(@Param('id', ParseIntPipe) id: number) {
+  //   return this.customerService.deleteOne(id);
+  // }
 }

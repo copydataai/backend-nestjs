@@ -1,28 +1,23 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
 import { CreateProductDto, UpdateProductDto } from '../dtos/products.dto';
 
 import { Product } from '../entities/product.entity';
 
 @Injectable()
 export class ProductsService {
-  private counterId = 1;
-  private products: Product[] = [
-    {
-      id: 0,
-      name: 'Product 1',
-      description: 'This is first product.',
-      price: 122,
-      stock: 12,
-      image: '',
-    },
-  ];
+  constructor(
+    @InjectModel(Product.name) private productModel: Model<Product>,
+  ) {}
 
   findAll() {
-    return this.products;
+    return this.productModel.find().exec();
   }
 
-  findOne(id: number) {
-    const value = this.products.find((item) => item.id === id);
+  async findOne(id: string) {
+    const value = await this.productModel.findById(id).exec();
     if (!value) {
       // return {
       //   error: true,
@@ -36,34 +31,32 @@ export class ProductsService {
     };
   }
 
-  createOne(payload: CreateProductDto) {
-    this.counterId = this.counterId + 1;
-    const newProduct = {
-      id: this.counterId,
-      ...payload,
-    };
-    this.products.push(newProduct);
-    return newProduct;
-  }
+  // async createOne(payload: CreateProductDto) {
+  //   const newProduct = {
+  //     ...payload,
+  //   };
+  //   this.productModel.insertMany(newProduct);
+  //   return newProduct;
+  // }
 
-  updateOne(id: number, payload: any) {
-    const product = this.findOne(id);
-    if (!product) {
-      return null;
-    }
-    const index = this.products.findIndex((item) => item.id === id);
-    this.products[index] = {
-      ...product,
-      ...payload,
-    };
-    return this.products[index];
-  }
-  deleteOne(id: number) {
-    const product = this.products.findIndex((item) => item.id === id);
-    if (product !== -1) {
-      this.products.splice(product, 1);
-      return 'Product delete';
-    }
-    return "Don't exists product";
-  }
+  // updateOne(id: number, payload: any) {
+  //   const product = this.findOne(id);
+  //   if (!product) {
+  //     return null;
+  //   }
+  //   const index = this.products.findIndex((item) => item.id === id);
+  //   this.products[index] = {
+  //     ...product,
+  //     ...payload,
+  //   };
+  //   return this.products[index];
+  // }
+  // deleteOne(id: number) {
+  //   const product = this.products.findIndex((item) => item.id === id);
+  //   if (product !== -1) {
+  //     this.products.splice(product, 1);
+  //     return 'Product delete';
+  //   }
+  //   return "Don't exists product";
+  // }
 }

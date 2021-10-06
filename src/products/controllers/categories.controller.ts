@@ -30,21 +30,21 @@ export class CategoriesController {
     return this.categoriesService.findOne(name);
   }
 
-  @Post()
-  createCategory(@Body() payload: CreateCategoriesDto) {
-    return this.categoriesService.createOne(payload);
-  }
+  // @Post()
+  // createCategory(@Body() payload: CreateCategoriesDto) {
+  //   return this.categoriesService.createOne(payload);
+  // }
 
-  @Put(':name')
-  updateCategory(
-    @Param('name') name: string,
-    @Body() payload: UpdateCategoriesDto,
-  ) {
-    return this.categoriesService.updateOne(name, payload);
-  }
+  // @Put(':name')
+  // updateCategory(
+  //   @Param('name') name: string,
+  //   @Body() payload: UpdateCategoriesDto,
+  // ) {
+  //   return this.categoriesService.updateOne(name, payload);
+  // }
 
-  @Delete(':name')
-  deleteCategory(@Param('name') name: string) {
-    return this.categoriesService.deleteOne(name);
-  }
+  // @Delete(':name')
+  // deleteCategory(@Param('name') name: string) {
+  //   return this.categoriesService.deleteOne(name);
+  // }
 }

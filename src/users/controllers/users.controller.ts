@@ -23,7 +23,7 @@ export class UsersController {
   }
 
   @Get(':userId')
-  GetUser(@Param('userId', ParseIntPipe) userId: number) {
+  GetUser(@Param('userId') userId: string) {
     const value = this.usersService.findOne(userId);
     if (!value) {
       throw new NotFoundException(`User with id: ${userId} not exists`);
@@ -31,26 +31,26 @@ export class UsersController {
     return value;
   }
 
-  @Get(':id/orders')
-  getOrders(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.getOrders(id);
-  }
+  // @Get(':id/orders')
+  // getOrders(@Param('id', ParseIntPipe) id: number) {
+  //   return this.usersService.getOrders(id);
+  // }
 
-  @Post()
-  createUser(@Body() payload: CreateUserDto) {
-    return this.usersService.createOne(payload);
-  }
+  // @Post()
+  // createUser(@Body() payload: CreateUserDto) {
+  //   return this.usersService.createOne(payload);
+  // }
 
-  @Put(':id')
-  updateUser(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() payload: UpdateUserDto,
-  ) {
-    return this.usersService.updateOne(id, payload);
-  }
+  // @Put(':id')
+  // updateUser(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() payload: UpdateUserDto,
+  // ) {
+  //   return this.usersService.updateOne(id, payload);
+  // }
 
-  @Delete(':id')
-  deleteUser(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.deleteOne(id);
-  }
+  // @Delete(':id')
+  // deleteUser(@Param('id', ParseIntPipe) id: number) {
+  //   return this.usersService.deleteOne(id);
+  // }
 }

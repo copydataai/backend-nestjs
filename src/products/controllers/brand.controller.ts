@@ -28,18 +28,18 @@ export class BrandController {
     return this.brandService.getOne(name);
   }
 
-  @Post()
-  createBrand(@Body() payload: CreateBrandDto) {
-    return this.brandService.createOne(payload);
-  }
+  // @Post()
+  // createBrand(@Body() payload: CreateBrandDto) {
+  //   return this.brandService.createOne(payload);
+  // }
 
-  @Put(':name')
-  updateBrand(@Param('name') name: string, @Body() payload: UpdateBrandDto) {
-    return this.brandService.updateOne(name, payload);
-  }
+  // @Put(':name')
+  // updateBrand(@Param('name') name: string, @Body() payload: UpdateBrandDto) {
+  //   return this.brandService.updateOne(name, payload);
+  // }
 
-  @Delete(':name')
-  deleteBrand(@Param('name') name: string) {
-    return this.brandService.deleteOne(name);
-  }
+  // @Delete(':name')
+  // deleteBrand(@Param('name') name: string) {
+  //   return this.brandService.deleteOne(name);
+  // }
 }
