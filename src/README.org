@@ -23,49 +23,113 @@ GET http://localhost:3000/products
     "description": "this is technology",
     "price": 12,
     "stock": 12
+  },
+  {
+    "_id": "615d81cfd2ded30b367b6b98",
+    "image": "https://google.com/",
+    "stock": 100,
+    "price": 1000,
+    "description": "This is technology",
+    "name": "Smartphone",
+    "__v": 0
+  },
+  {
+    "_id": "615d81dad2ded30b367b6b9a",
+    "image": "https://google.com/",
+    "stock": 5,
+    "price": 100,
+    "description": "This is technology",
+    "name": "Smartphone",
+    "__v": 0
+  },
+  {
+    "_id": "615d81dbd2ded30b367b6b9e",
+    "image": "https://google.com/",
+    "stock": 5,
+    "price": 100,
+    "description": "This is technology",
+    "name": "Smartphone",
+    "__v": 0
   }
 ]
 // GET http://localhost:3000/products
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 220
-// ETag: W/"dc-LMnovAdU7nzoi0rGPLVaQ+p0aD4"
-// Date: Wed, 06 Oct 2021 00:06:01 GMT
+// Content-Length: 673
+// ETag: W/"2a1-PYtbDKSzE1CFdSj4y8JY+kxZkZU"
+// Date: Wed, 06 Oct 2021 11:02:54 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.043709s
+// Request duration: 0.013079s
 #+END_SRC
 
 #+RESULTS:
-
-*** getProduct
+*** get Products with filter
 #+begin_src restclient
-GET http://localhost:3000/products/615ce8472d022b03d2d81bef
+GET http://localhost:3000/products?limit=3&offset=0
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC js
-{
-  "message": "OK",
-  "payload": {
+[
+  {
+    "_id": "615ce7eb2d022b03d2d81bee",
+    "name": "Smartphone",
+    "description": "this is technology",
+    "price": 102,
+    "stock": 1
+  },
+  {
     "_id": "615ce8472d022b03d2d81bef",
     "name": "Smart",
     "description": "this is technology",
     "price": 12,
     "stock": 12
+  },
+  {
+    "_id": "615d81cfd2ded30b367b6b98",
+    "image": "https://google.com/",
+    "stock": 100,
+    "price": 1000,
+    "description": "This is technology",
+    "name": "Smartphone",
+    "__v": 0
   }
-}
-// GET http://localhost:3000/products/615ce8472d022b03d2d81bef
+]
+// GET http://localhost:3000/products?limit=3&offset=0
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 133
-// ETag: W/"85-NcCj1hIfSI4Wu6fOdo0X3QubOac"
-// Date: Wed, 06 Oct 2021 00:08:27 GMT
+// Content-Length: 373
+// ETag: W/"175-FdB/Z8ejqWMeuEsxQqEdqysxG8g"
+// Date: Wed, 06 Oct 2021 16:25:23 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.014700s
+// Request duration: 0.008096s
+#+END_SRC
+
+*** getProduct
+#+begin_src restclient
+GET http://localhost:3000/products/3213123
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "statusCode": 500,
+  "message": "Internal server error"
+}
+// GET http://localhost:3000/products/3213123
+// HTTP/1.1 500 Internal Server Error
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 52
+// ETag: W/"34-rlKccw1E+/fV8niQk4oFitDfPro"
+// Date: Wed, 06 Oct 2021 11:13:01 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.002779s
 #+END_SRC
 ** Methods Post
 *** Create product
@@ -80,38 +144,14 @@ Content-Type: application/json
   "image": "https://google.com/"
 }
 #+end_src
-
-#+RESULTS:
-#+BEGIN_SRC js
-{
-  "message": "Action create",
-  "payload": {
-    "id": 4,
-    "name": "Smartphone",
-    "description": "This is technology",
-    "price": 100,
-    "stock": 5,
-    "image": "https://google.com/"
-  }
-}
-// POST http://localhost:3000/products
-// HTTP/1.1 201 Created
-// X-Powered-By: Express
-// Content-Type: application/json; charset=utf-8
-// Content-Length: 153
-// ETag: W/"99-RmKKmklUgeuPWs9TCuOC4b7U1uE"
-// Date: Sun, 03 Oct 2021 20:01:11 GMT
-// Connection: keep-alive
-// Keep-Alive: timeout=5
-// Request duration: 0.033186s
-#+END_SRC
 ** Methods Patch
 *** update product
 #+begin_src restclient
-PUT http://localhost:3000/products/3
+PUT http://localhost:3000/products/615d81cfd2ded30b367b6b98
 Content-Type: application/json
 {
-    "price": 105
+    "price": 1000,
+    "stock": 100
 }
 
 #+end_src
@@ -119,30 +159,24 @@ Content-Type: application/json
 #+RESULTS:
 #+BEGIN_SRC js
 {
-  "message": "Product is update",
-  "payload": {
-    "message": "OK",
-    "payload": {
-      "id": 3,
-      "name": "Smartphone",
-      "description": "This is technology",
-      "price": 100,
-      "stock": 5,
-      "image": "https://google.com/"
-    },
-    "price": 105
-  }
+  "_id": "615d81cfd2ded30b367b6b98",
+  "image": "https://google.com/",
+  "stock": 100,
+  "price": 1000,
+  "description": "This is technology",
+  "name": "Smartphone",
+  "__v": 0
 }
-// PUT http://localhost:3000/products/3
+// PUT http://localhost:3000/products/615d81cfd2ded30b367b6b98
 // HTTP/1.1 200 OK
 // X-Powered-By: Express
 // Content-Type: application/json; charset=utf-8
-// Content-Length: 196
-// ETag: W/"c4-XtVj9o/oDSDbJaLb5Umdmabfyxk"
-// Date: Sun, 03 Oct 2021 20:01:43 GMT
+// Content-Length: 152
+// ETag: W/"98-j+Fyd9oIFZp6MVuU10xDkzViLv0"
+// Date: Wed, 06 Oct 2021 11:01:56 GMT
 // Connection: keep-alive
 // Keep-Alive: timeout=5
-// Request duration: 0.032602s
+// Request duration: 0.006803s
 #+END_SRC
 
 #+RESULTS:
@@ -150,22 +184,30 @@ Content-Type: application/json
 ** Methods Delete
 *** Delete product
 #+begin_src restclient
-DELETE http://localhost:3000/products/4
+DELETE http://localhost:3000/products/615d81dbd2ded30b367b6b9c
 #+end_src
 
 #+RESULTS:
-#+BEGIN_SRC html
-Product delete
-<!-- DELETE http://localhost:3000/products/4 -->
-<!-- HTTP/1.1 200 OK -->
-<!-- X-Powered-By: Express -->
-<!-- Content-Type: text/html; charset=utf-8 -->
-<!-- Content-Length: 14 -->
-<!-- ETag: W/"e-Clfquo5FX//PVZpEtu43ZZiNKy4" -->
-<!-- Date: Sun, 03 Oct 2021 20:01:57 GMT -->
-<!-- Connection: keep-alive -->
-<!-- Keep-Alive: timeout=5 -->
-<!-- Request duration: 0.002009s -->
+#+BEGIN_SRC js
+{
+  "_id": "615d81dbd2ded30b367b6b9c",
+  "image": "https://google.com/",
+  "stock": 5,
+  "price": 100,
+  "description": "This is technology",
+  "name": "Smartphone",
+  "__v": 0
+}
+// DELETE http://localhost:3000/products/615d81dbd2ded30b367b6b9c
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 149
+// ETag: W/"95-9LQfMtWfBHCKHoOZHPoGQ4m65ME"
+// Date: Wed, 06 Oct 2021 11:02:32 GMT
+// Connection: keep-alive
+// Keep-Alive: timeout=5
+// Request duration: 0.013721s
 #+END_SRC
 * Users
 ** Methods Get

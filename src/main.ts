@@ -11,6 +11,9 @@ async function bootstrap() {
       whitelist: true,
       // respond bad request if you want send a otro: "maligno"
       forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }),
   );
   const config = new DocumentBuilder()
