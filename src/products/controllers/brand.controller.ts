@@ -11,6 +11,7 @@ import {
 import { CreateBrandDto, UpdateBrandDto } from '../dtos/brand.dto';
 import { BrandService } from '../services/brand.service';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 
 @ApiTags('brand')
 @Controller('brand')
@@ -23,23 +24,26 @@ export class BrandController {
     return this.brandService.getAll();
   }
 
-  @Get(':name')
-  getBrand(@Param('name') name: string) {
-    return this.brandService.getOne(name);
+  @Get(':id')
+  getBrand(@Param('id', MongoIdPipe) id: string) {
+    return this.brandService.getOne(id);
   }
 
-  // @Post()
-  // createBrand(@Body() payload: CreateBrandDto) {
-  //   return this.brandService.createOne(payload);
-  // }
+  @Post()
+  createBrand(@Body() payload: CreateBrandDto) {
+    return this.brandService.createOne(payload);
+  }
 
-  // @Put(':name')
-  // updateBrand(@Param('name') name: string, @Body() payload: UpdateBrandDto) {
-  //   return this.brandService.updateOne(name, payload);
-  // }
+  @Put(':id')
+  updateBrand(
+    @Param('id', MongoIdPipe) id: string,
+    @Body() payload: UpdateBrandDto,
+  ) {
+    return this.brandService.updateOne(id, payload);
+  }
 
-  // @Delete(':name')
-  // deleteBrand(@Param('name') name: string) {
-  //   return this.brandService.deleteOne(name);
-  // }
+  @Delete(':id')
+  deleteBrand(@Param('id', MongoIdPipe) id: string) {
+    return this.brandService.deleteOne(id);
+  }
 }

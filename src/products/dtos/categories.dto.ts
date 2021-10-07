@@ -5,12 +5,17 @@ import {
   IsNotEmpty,
   IsOptional,
   IsPositive,
+  IsUrl,
 } from 'class-validator';
 
 export class CreateCategoriesDto {
   @IsString()
   @IsNotEmpty()
-  name: string;
+  readonly name: string;
+
+  @IsUrl()
+  @IsNotEmpty()
+  readonly image: string;
 }
 
 export class UpdateCategoriesDto extends PartialType(CreateCategoriesDto) {}

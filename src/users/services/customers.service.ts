@@ -15,42 +15,36 @@ export class CustomersService {
     return this.customerModel.find().exec();
   }
 
-  findOne(id: string) {
-    const value = this.customerModel.findById(id);
+  async findOne(id: string) {
+    const value = await this.customerModel.findById(id);
     if (!value) {
-      throw new NotFoundException('This is users not exists');
+      throw new NotFoundException('customer not exists');
     }
     return value;
   }
 
-  // createOne(payload: CreateCustomerDto) {
-  //   const newCustomer = {
-  //     ...payload,
-  //   };
-  //   this.customers.push(newCustomer);
-  //   return newCustomer;
-  // }
+  async createOne(data: CreateCustomerDto) {
+    const newCustomer = new this.customerModel(data);
+    return await newCustomer.save();
+  }
 
-  // updateOne(id: number, payload: UpdateCustomerDto) {
-  //   const index = this.customers.findIndex((item) => item.id === id);
-  //   if (!index) {
-  //     throw new NotFoundException('This is users not exists');
-  //   }
-  //   const value = this.customers[index];
-  //   const updateCustomer = {
-  //     ...value,
-  //     ...payload,
-  //   };
-  //   this.customers[index] = updateCustomer;
-  //   return updateCustomer;
-  // }
+  async updateOne(id: string, changes: UpdateCustomerDto) {
+    const updateCustomer = await this.customerModel.findByIdAndUpdate(
+      id,
+      { $set: changes },
+      { new: true },
+    );
+    if (!updateCustomer) {
+      throw new NotFoundException('customer not exists');
+    }
+    return updateCustomer;
+  }
 
-  // deleteOne(id: number) {
-  //   const index = this.customers.findIndex((item) => item.id === id);
-  //   if (!index) {
-  //     throw new NotFoundException('This is users not exists');
-  //   }
-  //   this.customers.splice(index, 1);
-  //   return 'delete customer';
-  // }
+  async deleteOne(id: string) {
+    const customer = await this.customerModel.findByIdAndDelete(id).exec();
+    if (!customer) {
+      throw new NotFoundException('customer not exists');
+    }
+    return 'delete customer';
+  }
 }

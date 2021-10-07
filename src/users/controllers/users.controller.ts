@@ -7,11 +7,11 @@ import {
   Put,
   Delete,
   NotFoundException,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from '../dtos/users.dto';
 import { UsersService } from '../services/users.service';
 import { ApiTags } from '@nestjs/swagger';
+import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 
 @ApiTags('users')
 @Controller('users')
@@ -23,7 +23,7 @@ export class UsersController {
   }
 
   @Get(':userId')
-  GetUser(@Param('userId') userId: string) {
+  GetUser(@Param('userId', MongoIdPipe) userId: string) {
     const value = this.usersService.findOne(userId);
     if (!value) {
       throw new NotFoundException(`User with id: ${userId} not exists`);
@@ -36,21 +36,21 @@ export class UsersController {
   //   return this.usersService.getOrders(id);
   // }
 
-  // @Post()
-  // createUser(@Body() payload: CreateUserDto) {
-  //   return this.usersService.createOne(payload);
-  // }
+  @Post()
+  createUser(@Body() payload: CreateUserDto) {
+    return this.usersService.createOne(payload);
+  }
 
-  // @Put(':id')
-  // updateUser(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body() payload: UpdateUserDto,
-  // ) {
-  //   return this.usersService.updateOne(id, payload);
-  // }
+  @Put(':id')
+  updateUser(
+    @Param('id', MongoIdPipe) id: string,
+    @Body() payload: UpdateUserDto,
+  ) {
+    return this.usersService.updateOne(id, payload);
+  }
 
-  // @Delete(':id')
-  // deleteUser(@Param('id', ParseIntPipe) id: number) {
-  //   return this.usersService.deleteOne(id);
-  // }
+  @Delete(':id')
+  deleteUser(@Param('id', MongoIdPipe) id: string) {
+    return this.usersService.deleteOne(id);
+  }
 }

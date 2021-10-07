@@ -13,47 +13,31 @@ export class BrandService {
     return this.brandModel.find().exec();
   }
 
-  getOne(name: string) {
-    const value = this.brandModel.find({ name }).exec();
+  getOne(id: string) {
+    const value = this.brandModel.findById(id).exec();
     if (!value) {
       throw new NotFoundException('Not exists this brand');
     }
     return value;
   }
 
-  // createOne(payload: CreateBrandDto) {
-  //   const newBrand = {
-  //     ...payload,
-  //   };
-  //   this.brands.push(newBrand);
-  //   return newBrand;
-  // }
+  async createOne(payload: CreateBrandDto) {
+    const newBrand = new this.brandModel(payload);
+    return await newBrand.save();
+  }
 
-  // updateOne(name: string, payload: UpdateBrandDto) {
-  //   const index = this.brands.findIndex(
-  //     (item) => item.name.toLowerCase() === name.toLowerCase(),
-  //   );
-  //   if (!index) {
-  //     throw new NotFoundException('Not exists this brand');
-  //   }
-  //   const value = this.brands.find(
-  //     (item) => item.name.toLowerCase() === name.toLowerCase(),
-  //   );
-  //   this.brands[index] = {
-  //     ...value,
-  //     ...payload,
-  //   };
-  //   return this.brands[index];
-  // }
+  async updateOne(id: string, changes: UpdateBrandDto) {
+    const value = await this.brandModel
+      .findByIdAndUpdate(id, { $set: changes }, { new: true })
+      .exec();
+    return value;
+  }
 
-  // deleteOne(name: string) {
-  //   const index = this.brands.findIndex(
-  //     (item) => item.name.toLowerCase() === name.toLowerCase(),
-  //   );
-  //   if (!index) {
-  //     throw new NotFoundException('Not exists this brand');
-  //   }
-  //   this.brands.splice(index, 1);
-  //   return 'Brand delete';
-  // }
+  async deleteOne(id: string) {
+    const value = await this.brandModel.findByIdAndDelete(id);
+    if (!value) {
+      throw new NotFoundException(`Brand #${id} not found`);
+    }
+    return value;
+  }
 }

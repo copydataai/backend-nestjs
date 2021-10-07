@@ -15,7 +15,7 @@ export class CategoriesService {
   ) {}
 
   findAll() {
-    return this.categoryModel.find().exec;
+    return this.categoryModel.find().exec();
   }
 
   findOne(name: string) {
@@ -26,40 +26,26 @@ export class CategoriesService {
     return value;
   }
 
-  // createOne(payload: CreateCategoriesDto) {
-  //   const newCategory = {
-  //     id: this.counterId,
-  //     ...payload,
-  //   };
-  //   this.categories.push(newCategory);
-  //   return newCategory;
-  // }
+  async createOne(data: CreateCategoriesDto) {
+    const newCategory = new this.categoryModel(data);
+    return await newCategory.save();
+  }
 
-  // updateOne(name: string, payload: UpdateCategoriesDto) {
-  //   const index = this.categories.findIndex(
-  //     (item) => item.name.toLowerCase() === name.toLowerCase(),
-  //   );
-  //   if (!index) {
-  //     throw new NotFoundException('Not exists this categories');
-  //   }
-  //   const value = this.categories.find(
-  //     (item) => item.name.toLowerCase() === name.toLowerCase(),
-  //   );
-  //   this.categories[index] = {
-  //     ...value,
-  //     ...payload,
-  //   };
-  //   return value;
-  // }
+  updateOne(id: string, changes: UpdateCategoriesDto) {
+    const value = this.categoryModel
+      .findByIdAndUpdate(id, { $set: changes }, { new: true })
+      .exec();
+    if (!value) {
+      throw new NotFoundException(`Category #${id} not found`);
+    }
+    return value;
+  }
 
-  // deleteOne(name: string) {
-  //   const index = this.categories.findIndex(
-  //     (item) => item.name.toLowerCase() === name.toLowerCase(),
-  //   );
-  //   if (!index) {
-  //     throw new NotFoundException('Not exists this categories');
-  //   }
-  //   this.categories.splice(index, 1);
-  //   return 'category is delete';
-  // }
+  deleteOne(id: string) {
+    const value = this.categoryModel.findByIdAndDelete(id).exec();
+    if (!value) {
+      throw new NotFoundException(`Category #${id} not found`);
+    }
+    return value;
+  }
 }

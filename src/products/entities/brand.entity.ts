@@ -5,6 +5,7 @@ import { Document } from 'mongoose';
 export class Brand extends Document {
   @Prop({ type: String, required: true })
   name: string;
+
   @Prop({ type: String })
   image?: string;
 }

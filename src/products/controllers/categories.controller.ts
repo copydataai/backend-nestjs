@@ -14,6 +14,7 @@ import {
   UpdateCategoriesDto,
 } from '../dtos/categories.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 
 @ApiTags('categories')
 @Controller('categories')
@@ -25,26 +26,26 @@ export class CategoriesController {
     return this.categoriesService.findAll();
   }
 
-  @Get(':name')
-  getCategory(@Param('name') name: string) {
-    return this.categoriesService.findOne(name);
+  @Get(':id')
+  getCategory(@Param('id') id: string) {
+    return this.categoriesService.findOne(id);
   }
 
-  // @Post()
-  // createCategory(@Body() payload: CreateCategoriesDto) {
-  //   return this.categoriesService.createOne(payload);
-  // }
+  @Post()
+  createCategory(@Body() payload: CreateCategoriesDto) {
+    return this.categoriesService.createOne(payload);
+  }
 
-  // @Put(':name')
-  // updateCategory(
-  //   @Param('name') name: string,
-  //   @Body() payload: UpdateCategoriesDto,
-  // ) {
-  //   return this.categoriesService.updateOne(name, payload);
-  // }
+  @Put(':id')
+  updateCategory(
+    @Param('id', MongoIdPipe) id: string,
+    @Body() payload: UpdateCategoriesDto,
+  ) {
+    return this.categoriesService.updateOne(id, payload);
+  }
 
-  // @Delete(':name')
-  // deleteCategory(@Param('name') name: string) {
-  //   return this.categoriesService.deleteOne(name);
-  // }
+  @Delete(':id')
+  deleteCategory(@Param('id', MongoIdPipe) id: string) {
+    return this.categoriesService.deleteOne(id);
+  }
 }

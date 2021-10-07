@@ -21,7 +21,7 @@ export class UsersService {
     return value;
   }
 
-  // async getOrders(id: number) {
+  // async getOrders(id: string) {
   //   const user = this.findOne(id);
   //   if (!user) {
   //     throw new NotFoundException("Don't have orders");
@@ -33,34 +33,26 @@ export class UsersService {
   //   };
   // }
 
-  // createOne(payload: CreateUserDto) {
-  //   const newUser = {
-  //     ...payload,
-  //   };
-  //   this.users.push(newUser);
-  //   return newUser;
-  // }
+  async createOne(payload: CreateUserDto) {
+    const newUser = new this.userModel(payload);
+    return await newUser.save();
+  }
 
-  // updateOne(id: number, payload: any) {
-  //   const index = this.users.findIndex((item) => item.id === id);
-  //   if (!index) {
-  //     throw new NotFoundException('This user not exists');
-  //   }
-  //   const value = this.users[index];
-  //   const updateUser = {
-  //     ...value,
-  //     ...payload,
-  //   };
-  //   this.users[index] = updateUser;
-  //   return updateUser;
-  // }
+  async updateOne(id: string, changes: UpdateUserDto) {
+    const updateUser = await this.userModel
+      .findByIdAndUpdate(id, { $set: changes }, { new: true })
+      .exec();
+    if (!updateUser) {
+      throw new NotFoundException("User can't update profile");
+    }
+    return updateUser;
+  }
 
-  // deleteOne(id: number) {
-  //   const index = this.users.findIndex((item) => item.id === id);
-  //   if (!index) {
-  //     throw new NotFoundException('This user not exists');
-  //   }
-  //   this.users.splice(index, 1);
-  //   return 'This user is delete';
-  // }
+  async deleteOne(id: string) {
+    const user = await this.userModel.findByIdAndDelete(id).exec();
+    if (!user) {
+      throw new NotFoundException(`User #${id} not found`);
+    }
+    return 'This user is delete';
+  }
 }
